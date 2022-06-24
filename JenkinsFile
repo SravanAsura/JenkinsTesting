@@ -23,7 +23,7 @@ pipeline {
                 success {
                   sh 'echo  Build Done'
                    // junit '**/target/surefire-reports/TEST-*.xml'
-                    //archiveArtifacts 'target/*.jar'
+                    archiveArtifacts 'target/test.jar'
                 }
             }
         }
