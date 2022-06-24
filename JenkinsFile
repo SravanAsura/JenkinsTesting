@@ -11,6 +11,7 @@ pipeline {
 
                 // Run Maven on a Unix agent.
                 sh "mvn -Dmaven.test.failure.ignore=true clean package"
+                 archiveArtifacts 'webapp/target/webapp.war'
                  
 
                 // To run Maven on a Windows agent, use
@@ -22,8 +23,8 @@ pipeline {
                 // failed, record the test results and archive the jar file.
                 success {
                   sh 'echo  Build Done'
-                    junit '**/target/surefire-reports/TEST-*.xml'
-                    archiveArtifacts 'webapp/target/webapp.war'
+                   // junit '**/target/surefire-reports/TEST-*.xml'
+                   
                 }
             }
         }
