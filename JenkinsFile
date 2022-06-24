@@ -18,19 +18,22 @@ pipeline {
                 // bat "mvn -Dmaven.test.failure.ignore=true clean package"
             }
             }
-             stage('Deploy') {
+             
+			stage('Deploy') 
+			{
             steps {
-            sh """
+                    sh """
                     scp -o StrictHostKeyChecking=no target/myweb.war  ec2-user@172.31.15.177:/opt/tomcat10.0.22/webapps/
                     
                     ssh ec2-user@172.31.15.177 /opt/tomcat10.0.22/bin/shutdown.sh
                     
                     ssh ec2-user@172.31.15.177 /opt/tomcat10.0.22/bin/startup.sh
                 
-                """
+                    """
                 }
                 }
 
+}
             post {
                 // If Maven was able to run the tests, even if some of the test
                 // failed, record the test results and archive the jar file.
@@ -40,6 +43,6 @@ pipeline {
                    
                 }
             }
-        }
+        
     }
 
