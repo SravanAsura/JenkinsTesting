@@ -1,4 +1,4 @@
-{\rtf1}pipeline {
+pipeline {
     agent any
 
     
