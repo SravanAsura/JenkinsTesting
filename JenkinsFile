@@ -32,7 +32,7 @@ pipeline {
 			sshagent(['tomcat-new']) {
   
                     sh """
-                    scp -o StrictHostKeyChecking=no target/webapp.war  ec2-user@172.31.15.177:/opt/tomcat10.0.22/webapps/
+                    cp -o StrictHostKeyChecking=no target/webapp.war  /home/ec2-user/apache-tomcat-10.0.22/webapps
                     
                     ssh ec2-user@172.31.15.177 /opt/tomcat10.0.22/bin/shutdown.sh
                     
