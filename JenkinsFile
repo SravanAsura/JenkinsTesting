@@ -21,27 +21,10 @@ pipeline {
                 // failed, record the test results and archive the jar file.
                 success {
                    // junit '**/target/surefire-reports/TEST-*.xml'
-                    // archiveArtifacts 'webapp/target/webapp.war'
+                     archiveArtifacts 'webapp/target/webapp.war'
                 }
             }
         }
 		
-		stage('Deploy') 
-			{
-            steps {
-			sshagent(['tomcat-new']) {
-  
-                    sh """
-                    cp  webapp/target/webapp.war  /home/ec2-user/apache-tomcat-10.0.22/webapps
-                    
-                    ssh ec2-user@172.31.15.177 /opt/tomcat10.0.22/bin/shutdown.sh
-                    
-                    ssh ec2-user@172.31.15.177 /opt/tomcat10.0.22/bin/startup.sh
-                
-                    """
-                }
-                }
-				}
-				
-    }
-}
+		}
+		}
