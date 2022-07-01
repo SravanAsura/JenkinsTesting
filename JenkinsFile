@@ -32,7 +32,7 @@ pipeline {
 			sshagent(['tomcat-new']) {
   
                     sh """
-                    scp -o StrictHostKeyChecking=no var/lib/jenkins/workspace/Jenkins/webapp/target/webapp.war  tomcat9.0.64/webapps/
+                    scp -o StrictHostKeyChecking=no target/webapp.war  tomcat9.0.64/webapps/
                     
                     ssh tomcat9.0.64/bin/shutdown.sh
                     
