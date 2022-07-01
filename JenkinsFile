@@ -32,7 +32,8 @@ pipeline {
 			sshagent(['tomcat-new']) {
   
                     sh """
-                    scp  webapp/target/webapp.war  /home/ec2-user/apache-tomcat-9.0.64/webapps/
+                    scp -i /var/lib/jenkins/workspace/Jenkins/webapp/target/tmp/Maven.pem
+ webapp/target/webapp.war  /home/ec2-user/apache-tomcat-9.0.64/webapps/
                     
                     ssh tomcat9.0.64/bin/shutdown.sh
                     
