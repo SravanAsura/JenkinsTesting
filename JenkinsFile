@@ -32,7 +32,7 @@ pipeline {
 			sshagent(['tomcat-new']) {
   
                     sh """
-                    cp -o StrictHostKeyChecking=no webapp/target/webapp.war  apache-tomcat-9.0.64/webapps/
+                    cp  webapp/target/webapp.war  apache-tomcat-9.0.64/webapps/
                     
                     ssh tomcat9.0.64/bin/shutdown.sh
                     
