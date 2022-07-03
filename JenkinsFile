@@ -23,11 +23,11 @@ pipeline{
                    
                     
                     
-                    scp  /var/lib/jenkins/workspace/Jenkins/webapp/target/webapp.war  /home/ec2-user/apache-tomcat-9.0.64/webapps/
+                    scp  /var/lib/jenkins/workspace/Jenkins/webapp/target/webapp.war  /apache-tomcat-9.0.64/webapps/
        
-                    ssh /home/ec2-user/apache-tomcat-9.0.64/bin/shutdown.sh
+                    ssh /apache-tomcat-9.0.64/bin/shutdown.sh
 
-                    ssh /home/ec2-user/apache-tomcat-9.0.64/bin/startup.sh
+                    ssh /apache-tomcat-9.0.64/bin/startup.sh
 
                 
                 """
