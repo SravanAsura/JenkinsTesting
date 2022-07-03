@@ -5,8 +5,8 @@ pipeline{
     stages{
         stage("Git Checkout"){
             steps{
-                //git credentialsId: 'SravanAsura', url: 'https://github.com/SravanAsura/JenkinsTest.git'
-                git changelog: false, credentialsId: 'SravanAsura', poll: false, url: 'https://github.com/SravanAsura/JenkinsTesting.git'
+                git credentialsId: 'SravanAsura', url: 'https://github.com/SravanAsura/JenkinsTest.git'
+                
             }
         }
         stage("Build"){
