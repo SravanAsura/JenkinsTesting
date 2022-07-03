@@ -30,27 +30,7 @@ pipeline {
 			{
             steps {
 	    deploy adapters: [tomcat9(path: '', url: 'http://3.108.218.227:8080/')], contextPath: ' JenkinsTesting', war: 'target/*war'
-			sshagent(['tomcat-new']) {
-  
-                    sh """
-                
-		    
-		   
-                    scp -o StrictHostKeyChecking=no var/lib/jenkins/workspace/Jenkins/webapp/target/webapp.war  ec2-user@172.31.5.176:/apache-tomcat-9.0.64/webapps
-/webapps/
-                    
-                    ssh ec2-user@172.31.5.176 /apache-tomcat-9.0.64/webapps
-/bin/shutdown.sh
-                    
-                    ssh ec2-user@172.31.5.176 /apache-tomcat-9.0.64/webapps
-/bin/startup.sh
-                
-		    
-		    
-		    
-                
-                    """
-                }
+			
                 }
 				}
 		
