@@ -23,7 +23,7 @@ pipeline{
                    
                     
                     
-                    scp  /var/lib/jenkins/workspace/Jenkins/webapp/target/webapp.war  apache-tomcat-9.0.64/webapps/
+                    cp  /var/lib/jenkins/workspace/Jenkins/webapp/target/webapp.war  apache-tomcat-9.0.64/webapps/
        
                     ssh apache-tomcat-9.0.64/bin/shutdown.sh
 
