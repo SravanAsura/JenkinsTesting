@@ -20,14 +20,10 @@ pipeline{
             steps{
                 sshagent(['tomcat-new']) {
                 sh """
-                   // scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/Jenkins/webapp/target/webapp.war  ec2-user@172.31.36.14:/home/ec2-user/apache-tomcat-9.0.64/webapps/
-       
-                    //ssh ec2-user@172.31.36.14 /home/ec2-user/apache-tomcat-9.0.64/bin/shutdown.sh
-
-                    //ssh ec2-user@172.31.36.14 /home/ec2-user/apache-tomcat-9.0.64/bin/startup.sh
+                   
                     
                     
-                     cp  /var/lib/jenkins/workspace/Jenkins/webapp/target/webapp.war  /home/ec2-user/apache-tomcat-9.0.64/webapps/
+                    cp  /var/lib/jenkins/workspace/Jenkins/webapp/target/webapp.war  /home/ec2-user/apache-tomcat-9.0.64/webapps/
        
                     ssh /home/ec2-user/apache-tomcat-9.0.64/bin/shutdown.sh
 
