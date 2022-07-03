@@ -20,7 +20,7 @@ pipeline{
                    // junit '**/target/surefire-reports/TEST-*.xml'
                      archiveArtifacts 'webapp/target/webapp.war'
                 }
-        }
+        }}
         stage("deploy-dev"){
             steps{
                 sshagent(['tomcat-new']) {
