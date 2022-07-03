@@ -11,7 +11,7 @@ pipeline{
         stage("Build"){
             steps{
                 sh "mvn clean package"
-                sh "mv /var/lib/jenkins/workspace/Jenkins/webapp/target/webapp.war target/webapp.war"
+                sh "mv /var/lib/jenkins/workspace/Jenkins/webapp/target/webapp.war webapp/target/webapp.war"
             }
         }
         stage("deploy-dev"){
