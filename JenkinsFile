@@ -1,39 +1,39 @@
-pipeline {
+pipeline{
     agent any
-
     
-    stages {
-        stage('Build') {
-            steps {
-                sh 'echo Started Build Phase'
-                // Get some code from a GitHub repository
-                git 'https://github.com/SravanAsura/JenkinsTest.git'
-
-                // Run Maven on a Unix agent.
-                sh "mvn clean package"
-
-                // To run Maven on a Windows agent, use
-                // bat "mvn -Dmaven.test.failure.ignore=true clean package"
-            }
-
-            post {
-                // If Maven was able to run the tests, even if some of the test
-                // failed, record the test results and archive the jar file.
-                success {
-                   // junit '**/target/surefire-reports/TEST-*.xml'
-                     archiveArtifacts 'webapp/target/webapp.war'
-                }
+  
+    stages{
+        stage("Git Checkout"){
+            steps{
+                git credentialsId: 'github', url: 'https://github.com/SravanAsura/JenkinsTest.git'
             }
         }
-		
-		stage('Deploy') 
-			{
-            steps {
-	    deploy adapters: [tomcat9(path: '', url: 'http://3.108.218.227:8080/')], contextPath: ' JenkinsTesting', war: 'target/*war'
-			
-                }
-				}
-		
-		
-		}
-		}
+        stage("Build"){
+            steps{
+                sh "mvn clean package"
+                sh "mv target/*.war target/webapp.war"
+            }
+        }
+        stage("deploy-dev"){
+            steps{
+                sshagent(['tomcat-new']) {
+                sh """
+                    scp -o StrictHostKeyChecking=no target/webapp.war  ec2-user@172.31.5.176:/home/ec2-user/apache-tomcat-9.0.64/webapps
+
+                    
+                    ssh ec2-user@172.31.5.176 /home/ec2-user/apache-tomcat-9.0.64
+/bin/shutdown.sh
+                    
+                    ssh ec2-user@172.31.5.176 /home/ec2-user/apache-tomcat-9.0.64/bin/startup.sh
+                
+                """
+            }
+            
+            }
+        }
+    }
+}
+
+
+
+
