@@ -14,6 +14,14 @@ pipeline{
                 sh "mvn clean package"
                 //sh "mv /var/lib/jenkins/workspace/Jenkins/webapp/target/webapp.war webapp/target/webapp.war"
             }  
+              post {
+                // If Maven was able to run the tests, even if some of the test
+                // failed, record the test results and archive the jar file.
+                success {
+                   // junit '**/target/surefire-reports/TEST-*.xml'
+                     archiveArtifacts 'webapp/target/webapp.war'
+                }
+        }
           
             }
         stage("deploy-dev"){
