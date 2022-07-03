@@ -5,7 +5,7 @@ pipeline{
     stages{
         stage("Git Checkout"){
             steps{
-                git credentialsId: 'SravanAsura', url: 'https://github.com/SravanAsura/JenkinsTest.git'
+                git 'https://github.com/SravanAsura/JenkinsTest.git'
                 
             }
         }
