@@ -27,7 +27,7 @@ pipeline{
         stage("deploy-dev"){
             steps{
             
-sh "cp /var/lib/jenkins/workspace/Jenkins/webapp/target/webapp.war /home/ec2-user/apache-tomcat-9.0.64/webapps/"
+sh "cp /var/lib/jenkins/workspace/Jenkins/webapp/target/webapp.war apache-tomcat-9.0.64/webapps/"
 
             
             }
