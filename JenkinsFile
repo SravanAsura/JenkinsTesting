@@ -11,7 +11,7 @@ pipeline{
         }
         stage("Build"){
             steps{
-                sh "cd /var/lib/jenkins/workspace/Jenkins/ mvn clean package"
+                sh "cd mvn clean package"
                 //sh "mv /var/lib/jenkins/workspace/Jenkins/webapp/target/webapp.war webapp/target/webapp.war"
             }  
               post {
