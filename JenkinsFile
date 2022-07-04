@@ -26,8 +26,18 @@ pipeline{
             }
         stage("deploy-dev"){
             steps{
-            
-sh "cp /var/lib/jenkins/workspace/Jenkins/webapp/target/webapp.war apache-tomcat-9.0.64/webapps/"
+           
+ sshagent(['tomcat-new']) {
+                sh """
+                    scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/Jenkins/webapp/target/webapp.war ec2-user@172.31.34.86:/home/ec2-user/apache-tomcat-9.0.64/webapps/
+       
+                    ssh ec2-user@172.31.34.86 /home/ec2-user/apache-tomcat-9.0.64/bin/shutdown.sh
+
+                    ssh ec2-user@172.31.34.86 /home/ec2-user/apache-tomcat-9.0.64/bin/startup.sh
+
+                
+                """
+            }
 
             
             }
